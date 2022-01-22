@@ -10,8 +10,14 @@ public class PlayerController : MonoBehaviour
     [Header("刀が当たった時の効果音")]
     public AudioClip HitKatana;
 
+    [Header("手裏剣が当たった時の効果音")]
+    public AudioClip HitSyuriken;
+
     //刀のプレハブを取得する
-    public GameObject KP;
+    public GameObject kp;
+
+    //手裏剣のプレハブを取得する
+    public GameObject sp;
 
     //ゲームディレクターの取得
     public GameObject gd;
@@ -51,6 +57,9 @@ public class PlayerController : MonoBehaviour
     //刀の攻撃力
     private int PC_KA;
 
+    //手裏剣の攻撃力
+    private int PC_SA;
+
     private float Horizontal;
 
     Rigidbody2D rb;
@@ -62,7 +71,10 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         //刀の攻撃力を取得
-        PC_KA = KP.GetComponent<EnemyController>().katanaAttack;
+        PC_KA = kp.GetComponent<KatanaController>().katanaAttack;
+
+        //手裏剣の攻撃力を取得
+        PC_SA = sp.GetComponent<SyurikenController>().syurikenAttack;
     }
 
     void Update()
@@ -135,7 +147,16 @@ public class PlayerController : MonoBehaviour
                 P_NowHP -= PC_KA;
 
                 //Vector3の後ろはメインカメラのちょっと下の位置
-                AudioSource.PlayClipAtPoint(HitKatana, new Vector2(0, -4));
+                AudioSource.PlayClipAtPoint(HitKatana, new Vector2(0, 0));
+            }
+
+            if(other.gameObject.tag == "syuriken")
+            {
+                Debug.Log("いってえ！！");
+
+                P_NowHP -= PC_SA;
+
+                AudioSource.PlayClipAtPoint(HitSyuriken, new Vector2(0, 0));
             }
         }
     }

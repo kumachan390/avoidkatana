@@ -937,12 +937,17 @@ MonoBehaviour:
   gd: {fileID: 384129772}
   tm: {fileID: 352458040}
   katanaprefab: {fileID: 1590877883168751085, guid: 029a569a93f19ea4f92ab30fd5ac2869, type: 3}
+  syurikenprefab: {fileID: 4098153721561046070, guid: ca30eee6d02fedf46a4d6e936b22d276, type: 3}
   SpawnMax: 9
   repeatkatana: 0.5
-  FTMrepeatkatana: 0.3
-  Lastrepeatkatana: 0.2
+  FTMrepeatkatana: 0.2
+  Lastrepeatkatana: 0.15
+  repeatsyuriken: 0.8
+  FTMrepeatsyuriken: 0.6
+  Lastrepeatsyuriken: 0.25
   TaimingTimer: 0
-  elapsedTime: 0
+  katanaTime: 0
+  syurikenTime: 0
 --- !u!4 &463559389
 Transform:
   m_ObjectHideFlags: 0
@@ -1190,7 +1195,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -661.1032, y: 456.0924}
+  m_AnchoredPosition: {x: -661.1033, y: 456.0924}
   m_SizeDelta: {x: -923.1429, y: -431.3279}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &557834510
@@ -1407,7 +1412,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1828,7 +1833,7 @@ GameObject:
   - component: {fileID: 1225388229}
   m_Layer: 6
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1911,7 +1916,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.41993654}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1922,7 +1927,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8, y: 2.1}
+  m_Size: {x: 8, y: 1.2601268}
   m_EdgeRadius: 0
 --- !u!1 &1432074977
 GameObject:
@@ -2409,6 +2414,7 @@ GameObject:
   - component: {fileID: 1661695491}
   - component: {fileID: 1661695490}
   - component: {fileID: 1661695494}
+  - component: {fileID: 1661695495}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2423,7 +2429,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1661695489}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -2541,15 +2547,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitKatana: {fileID: 8300000, guid: 7afb9bedead8ede4b881e1981f78a529, type: 3}
-  KP: {fileID: 1590877883168751085, guid: 029a569a93f19ea4f92ab30fd5ac2869, type: 3}
+  HitSyuriken: {fileID: 8300000, guid: c563e840e0daab24f902fe8764d90523, type: 3}
+  kp: {fileID: 1590877883168751085, guid: 029a569a93f19ea4f92ab30fd5ac2869, type: 3}
+  sp: {fileID: 4098153721561046070, guid: ca30eee6d02fedf46a4d6e936b22d276, type: 3}
   gd: {fileID: 384129772}
-  volume: 0
   P_MaxHP: 10
   P_NowHP: 10
   moveSpeed: 10
-  sneakmoveSpeed: 3
+  sneakmoveSpeed: 4
   screenLeft: -8.3
   screenRight: 8.3
+--- !u!70 &1661695495
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661695489}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.27042627, y: -0.15093553}
+  m_Size: {x: 1.9018087, y: 3.9496882}
+  m_Direction: 0
 --- !u!1 &1742823190
 GameObject:
   m_ObjectHideFlags: 0

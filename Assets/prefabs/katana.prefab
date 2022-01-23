@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2463372747224416833}
   - component: {fileID: 4814919548569500019}
-  - component: {fileID: -1671899102361548700}
   - component: {fileID: 6893232244331141182}
+  - component: {fileID: -1671899102361548700}
   - component: {fileID: 3544023198287868996}
   m_Layer: 0
   m_Name: katana
@@ -85,6 +85,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &6893232244331141182
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590877883168751085}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.05414199, y: -0.37814653}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.05, y: 1.93}
+    newSize: {x: 2.05, y: 1.93}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.16401587, y: 1.1643515}
+  m_EdgeRadius: 0
 --- !u!50 &-1671899102361548700
 Rigidbody2D:
   serializedVersion: 4
@@ -106,32 +132,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &6893232244331141182
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1590877883168751085}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.056390464, y: -0.38269088}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.05, y: 1.93}
-    newSize: {x: 2.05, y: 1.93}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.15951893, y: 1.17344}
-  m_EdgeRadius: 0
 --- !u!114 &3544023198287868996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fa76aae656a76547b5980af6c3b4e2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  katanafallSpeed: 1
+  katanaFallSpeed: 1
   fallSpeedMin: 1
-  fallSpeedMax: 5
+  fallSpeedMax: 4.5

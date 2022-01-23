@@ -939,12 +939,12 @@ MonoBehaviour:
   katanaprefab: {fileID: 1590877883168751085, guid: 029a569a93f19ea4f92ab30fd5ac2869, type: 3}
   syurikenprefab: {fileID: 4098153721561046070, guid: ca30eee6d02fedf46a4d6e936b22d276, type: 3}
   SpawnMax: 9
-  repeatkatana: 0.5
-  FTMrepeatkatana: 0.2
-  Lastrepeatkatana: 0.15
-  repeatsyuriken: 0.8
-  FTMrepeatsyuriken: 0.6
-  Lastrepeatsyuriken: 0.25
+  repeatkatana: 0.54
+  FTMrepeatkatana: 0.28
+  Lastrepeatkatana: 0.22
+  repeatsyuriken: 0.85
+  FTMrepeatsyuriken: 0.64
+  Lastrepeatsyuriken: 0.32
   TaimingTimer: 0
   katanaTime: 0
   syurikenTime: 0
@@ -2552,7 +2552,7 @@ MonoBehaviour:
   sp: {fileID: 4098153721561046070, guid: ca30eee6d02fedf46a4d6e936b22d276, type: 3}
   gd: {fileID: 384129772}
   P_MaxHP: 10
-  P_NowHP: 10
+  P_NowHP: 0
   moveSpeed: 10
   sneakmoveSpeed: 4
   screenLeft: -8.3

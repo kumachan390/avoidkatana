@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     public GameObject gd;
 
     [Header("プレイヤーの最大のHP")]
-    public int P_MaxHP = 10;
+    public int P_MaxHP;
 
     //[NonSerialized]Unity上に出したくないpublic
     [Header("プレイヤーの現在のHP")]
@@ -69,6 +69,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        P_NowHP = P_MaxHP;
 
         //刀の攻撃力を取得
         PC_KA = kp.GetComponent<KatanaController>().katanaAttack;

@@ -12,6 +12,9 @@ public class SpawnGenerator : MonoBehaviour
     [Header("タイマーの取得")]
     public GameObject tm;
 
+    //[Header("chooseBackの取得")] 
+    //public GameObject cb;
+
     [Header("刀のプレハブ入れ")]
     public GameObject katanaprefab;
 
@@ -55,10 +58,17 @@ public class SpawnGenerator : MonoBehaviour
     //タイマーの持っている制限時間の残り
     private float EG_CT;
 
-    //ゲームクリア画面かゲームオーバー画面が出ているなら刀を降らせないためのbool値
+    //ゲームクリア画面かゲームオーバー画面かパーフェクト画面が出ているなら刀を降らせないためのbool値
     private bool EG_SAGO;
     private bool EG_SAGC;
     private bool EG_SAPC;
+
+    ////easyを選んだ時のbool
+    //private bool CBC_CE;
+    ////Normalを選んだ時のbool
+    //private bool CBC_CN;
+    ////Hardを選んだ時のbool
+    //private bool CBC_CH;
 
     void Start()
     {
@@ -69,6 +79,11 @@ public class SpawnGenerator : MonoBehaviour
 
     private void Update()
     {
+        ////スタンバイシーンで選んだ難易度によって難易度を変える
+        //CBC_CE = cb.GetComponent<Difficulty>().ChooseEasy;
+        //CBC_CN = cb.GetComponent<Difficulty>().ChooseNormal;
+        //CBC_CH = cb.GetComponent<Difficulty>().ChooseHard;
+
         EG_SAGO = gd.GetComponent<GameDirector>().SAGO;
         EG_SAPC = gd.GetComponent<GameDirector>().SAPC;
         EG_SAGC = gd.GetComponent<GameDirector>().SAGC;

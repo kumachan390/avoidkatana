@@ -1052,10 +1052,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 15515c9ea324bd64eba40fd9d5c3c614, type: 3}
-    m_FontSize: 50
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 5
+    m_MinSize: 0
     m_MaxSize: 50
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -1065,7 +1065,8 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "\u30D7\u30EC\u30A4\u30E4\u30FC\u3092\u52D5\u304B\u3057\u3066\n\u4E0A\u304B\u3089\u964D\u3063\u3066\u304F\u308B\u5200\u304B\u3089\u5B88\u308D\u3046\uFF01\n\nA
     or \u2190 \u30FB\u30FB\u30FB \u5DE6\u79FB\u52D5\n\nD or \u2192 \u30FB\u30FB\u30FB
-    \u53F3\u79FB\u52D5\n\nShift\u9577\u62BC\u3057\u30FB\u30FB\u30FB\u3086\u3063\u304F\u308A\u52D5\u304F\n"
+    \u53F3\u79FB\u52D5\n\n  Shift\u9577\u62BC\u3057 \u30FB\u30FB\u30FB \u3086\u3063\u304F\u308A\u52D5\u304F\n\n    
+    P \u30FB\u30FB\u30FB Pause\n"
 --- !u!222 &814151725
 CanvasRenderer:
   m_ObjectHideFlags: 0

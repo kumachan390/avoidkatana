@@ -145,23 +145,30 @@ public class GameDirector : MonoBehaviour
             SAGC = true;
             GameClear();
         }
-        
-        //Pを押したら一時停止フラグを揚げる
-        if(Input.GetKeyDown(KeyCode.P))
+
+        //Pを押したら一時停止フラグを揚げる(ポーズ画面も同時に表示しようとしたけどゲームが止まってしまった)
+        if (Input.GetKeyDown(KeyCode.P))
         {
             freeze = true;
         }
 
-        //一時停止しているならポーズ画面を表示する
-        if(freeze == true)
+        //ポーズ画面を表示する
+        if (freeze == true)
         {
             Pause.SetActive(true);
         }
 
-        //ポーズ画面が出ていてスペースキーが押されたら
+        //ポーズ画面が出ていてスペースキーが押されたらゲーム再開
         if(Pause == true && Input.GetKeyDown(KeyCode.Space))
         {
             Pause.SetActive(false);
+            freeze = false;
+        }
+        
+        //ポーズ画面が出ていてエスケープキーが押されたらタイトルに戻る
+        if(Pause == true && Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("TitleScene");
             freeze = false;
         }
 

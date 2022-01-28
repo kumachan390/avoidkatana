@@ -21,7 +21,7 @@ public class ChooseBackController : MonoBehaviour
     {
         Transform myTf = this.transform;
 
-        if (SceneManager.GetActiveScene().name == "Stand-byscene") ;
+        if (SceneManager.GetActiveScene().name == "Stand-byscene")
         {
 
             if (chooseBack.transform.position.y == 190 && Input.GetKeyDown(KeyCode.DownArrow))

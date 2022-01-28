@@ -9,7 +9,7 @@ public class HPGauge : MonoBehaviour
     /*解決!*/
 
     [Header("プレイヤーの取得")]
-    public GameObject pc;
+    public GameObject HPG_pc;
 
     //HPゲージのスライダーを取得(GameObjectだと.valueが使えなかった)
     [Header("体力ゲージになるスライダーの取得")]
@@ -26,7 +26,7 @@ public class HPGauge : MonoBehaviour
     void Start()
     {
         //ゲーム開始時にプレイヤーの最大HPを取得する
-        HPG_PMHP = pc.GetComponent<PlayerController>().P_MaxHP;
+        HPG_PMHP = HPG_pc.GetComponent<PlayerController>().P_MaxHP;
 
         //HPゲージと取得したプレイヤーのHPを参照する
         hpGauge.maxValue = HPG_PMHP;
@@ -35,7 +35,7 @@ public class HPGauge : MonoBehaviour
     void Update()
     {
         //プレイヤーの現在のHPをマイフレーム取得する
-        HPG_PNHP = pc.GetComponent<PlayerController>().P_NowHP;
+        HPG_PNHP = HPG_pc.GetComponent<PlayerController>().P_NowHP;
 
         //HPゲージのvalueを現在のHPの値を参照して動かす
         hpGauge.value = HPG_PNHP;

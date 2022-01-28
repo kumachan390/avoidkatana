@@ -7,10 +7,10 @@ public class SpawnGenerator : MonoBehaviour
     /*刀を生み出す場所、速さの設定*/
 
     [Header("ゲームディレクターの取得")]
-    public GameObject gd;
+    public GameObject SG_gd;
 
     [Header("タイマーの取得")]
-    public GameObject tm;
+    public GameObject SG_tm;
 
     //[Header("chooseBackの取得")] 
     //public GameObject cb;
@@ -58,6 +58,9 @@ public class SpawnGenerator : MonoBehaviour
     //タイマーの持っている制限時間の残り
     private float EG_CT;
 
+    //一時停止bool
+    private bool EG_F;
+
     //ゲームクリア画面かゲームオーバー画面かパーフェクト画面が出ているなら刀を降らせないためのbool値
     private bool EG_SAGO;
     private bool EG_SAGC;
@@ -84,12 +87,14 @@ public class SpawnGenerator : MonoBehaviour
         //CBC_CN = cb.GetComponent<Difficulty>().ChooseNormal;
         //CBC_CH = cb.GetComponent<Difficulty>().ChooseHard;
 
-        EG_SAGO = gd.GetComponent<GameDirector>().SAGO;
-        EG_SAPC = gd.GetComponent<GameDirector>().SAPC;
-        EG_SAGC = gd.GetComponent<GameDirector>().SAGC;
+        EG_SAGO = SG_gd.GetComponent<GameDirector>().SAGO;
+        EG_SAPC = SG_gd.GetComponent<GameDirector>().SAPC;
+        EG_SAGC = SG_gd.GetComponent<GameDirector>().SAGC;
 
-        //ゲームオーバーとパーフェクトクリアとゲームクリアの画面が出ていない時に生み出す
-        if (EG_SAGO == false && EG_SAPC == false && EG_SAGC == false)
+        EG_F = SG_gd.GetComponent<GameDirector>().freeze;
+
+        //ゲームオーバーとパーフェクトクリアとゲームクリアと一時停止の画面が出ていない時に生み出す
+        if (EG_SAGO == false && EG_SAPC == false && EG_SAGC == false && EG_F == false)
         {
             //出現タイミングを管理するタイマーを計測する
             TaimingTimer += Time.deltaTime;
@@ -107,7 +112,10 @@ public class SpawnGenerator : MonoBehaviour
                 this.SpawnP = Random.Range(-SpawnMax, SpawnMax);
 
                 //(Instantiate,生成位置,回転角)(new Vector2(X方向は最初の値から-9から9の中のランダムな場所、Y方向は6,回転はしないので値は入れない))
-                Instantiate(katanaprefab, new Vector2(SpawnP, 6), transform.rotation);
+                GameObject kp = Instantiate(katanaprefab, new Vector2(SpawnP, 6), transform.rotation);
+
+                //刀にpauseの判定を教える処理
+                kp.GetComponent<KatanaController>().KC_gd = SG_gd;
 
                 //ここで計測した時間を0にする
                 katanaTime = 0f;
@@ -133,7 +141,9 @@ public class SpawnGenerator : MonoBehaviour
                 this.SpawnP = Random.Range(-SpawnMax, SpawnMax);
 
                 //(Instantiate,生成位置,回転角)(new Vector2(X方向は最初の値から-9から9の中のランダムな場所、Y方向は6,回転はしないので値は入れない))
-                Instantiate(syurikenprefab, new Vector2(SpawnP, 6), transform.rotation);
+                GameObject sp = Instantiate(syurikenprefab, new Vector2(SpawnP, 6), transform.rotation);
+
+                sp.GetComponent<SyurikenController>().SC_gd = SG_gd;
 
                 //ここで計測した時間を0にする
                 syurikenTime = 0f;

@@ -14,13 +14,13 @@ public class PlayerController : MonoBehaviour
     public AudioClip HitSyuriken;
 
     //刀のプレハブを取得する
-    public GameObject kp;
+    public GameObject PC_kp;
 
     //手裏剣のプレハブを取得する
-    public GameObject sp;
+    public GameObject PC_sp;
 
     //ゲームディレクターの取得
-    public GameObject gd;
+    public GameObject PC_gd;
 
     [Header("プレイヤーの最大のHP")]
     public int P_MaxHP;
@@ -54,6 +54,9 @@ public class PlayerController : MonoBehaviour
     //ここで使うゲームクリア画面が出たかどうかの判定
     private bool PC_SAGC;
 
+    //ここで使う一時停止bool
+    private bool PC_F;
+
     //刀の攻撃力
     private int PC_KA;
 
@@ -73,22 +76,24 @@ public class PlayerController : MonoBehaviour
         P_NowHP = P_MaxHP;
 
         //刀の攻撃力を取得
-        PC_KA = kp.GetComponent<KatanaController>().katanaAttack;
+        PC_KA = PC_kp.GetComponent<KatanaController>().katanaAttack;
 
         //手裏剣の攻撃力を取得
-        PC_SA = sp.GetComponent<SyurikenController>().syurikenAttack;
+        PC_SA = PC_sp.GetComponent<SyurikenController>().syurikenAttack;
     }
 
     void Update()
     {
         //ゲームオーバー画面が出たかどうか
-        PC_SAGO = gd.GetComponent<GameDirector>().SAGO;
+        PC_SAGO = PC_gd.GetComponent<GameDirector>().SAGO;
 
         //パーフェクトクリア画面が出たかどうか
-        PC_SAPC = gd.GetComponent<GameDirector>().SAPC;
+        PC_SAPC = PC_gd.GetComponent<GameDirector>().SAPC;
 
         //ゲームクリア画面が出たかどうか
-        PC_SAGC = gd.GetComponent<GameDirector>().SAGC;
+        PC_SAGC = PC_gd.GetComponent<GameDirector>().SAGC;
+
+        PC_F = PC_gd.GetComponent<GameDirector>().freeze;
 
         //左を押したら-1、右を押したら1、押してないときは0
         Horizontal = Input.GetAxis("Horizontal_P");
@@ -112,7 +117,7 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         //動き続けるバグ防止 /*入力もシャットアウト*/
-        if (PC_SAGO == false && PC_SAPC == false && PC_SAGC == false)
+        if (PC_SAGO == false && PC_SAPC == false && PC_SAGC == false && PC_F == false)
         {
             if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
             {
@@ -138,7 +143,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (PC_SAGO == false && PC_SAPC == false && PC_SAGC ==false)
+        if (PC_SAGO == false && PC_SAPC == false && PC_SAGC == false && PC_F == false)
         {
             //制限時間が残っていて刀に当たったら
             if (other.gameObject.tag == "katana")

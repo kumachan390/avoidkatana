@@ -126,7 +126,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fa76aae656a76547b5980af6c3b4e2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  KC_gd: {fileID: 0}
   katanaFallSpeed: 1
   fallSpeedMin: 1
-  fallSpeedMax: 4.5
+  fallSpeedMax: 5

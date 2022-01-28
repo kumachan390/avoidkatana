@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class SyurikenController : MonoBehaviour
 {
+    //ゲームディレクターの取得
+    [System.NonSerialized]
+    public GameObject SC_gd;
+
     [Header("手裏剣の攻撃力")]
     [System.NonSerialized]
     public int syurikenAttack = 2;
@@ -20,10 +24,15 @@ public class SyurikenController : MonoBehaviour
     [SerializeField]
     private float syuSpeedMax = 5;
 
+    //一時停止の旗
+    private bool SC_F;
+
     Rigidbody2D rb;
 
     void Start()
     {
+        SC_F = false;
+
         rb = GetComponent<Rigidbody2D>();
 
         //Random.Range(A,B) AとBの範囲の中で抽選する /*落ちる速さをランダムに決めている*/
@@ -32,11 +41,24 @@ public class SyurikenController : MonoBehaviour
 
     void FixedUpdate()
     {
-        //x方向に働く力は0、y方向に働く力はsyurikenfallspeedの値の速さで落ちる
-        rb.velocity = new Vector2(0, -syurikenFallSpeed);
+        SC_F = SC_gd.GetComponent<GameDirector>().freeze;
 
-        //Z軸を中心に回転する
-        transform.Rotate(new Vector3(0, 0, -15));
+
+        //一時停止したら手裏剣の動きを止める
+        if (SC_F == false)
+        {
+            //x方向に働く力は0、y方向に働く力はsyurikenfallspeedの値の速さで落ちる
+            rb.velocity = new Vector2(0, -syurikenFallSpeed);
+
+            //Z軸を中心に回転する
+            transform.Rotate(new Vector3(0, 0, -15));
+
+        }
+        else
+        {
+            rb.velocity = new Vector2(0, 0);
+            transform.Rotate(new Vector3(0, 0, 0));
+        }
 
         if(transform.position.y < -6)
         {

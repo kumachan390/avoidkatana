@@ -11,10 +11,10 @@ public class GameDirector : MonoBehaviour
     /*サウンドが一回なっても繰り返し鳴るから対処が必要*/
 
     [Header("プレイヤーの取得")]
-    public GameObject pc;
+    public GameObject GD_pc;
 
     [Header("タイマーの取得")]
-    public GameObject Tm;
+    public GameObject GD_Tm;
 
     [Header("ゲームオーバーのパネルの取得")]
     public GameObject Gameover;
@@ -24,6 +24,9 @@ public class GameDirector : MonoBehaviour
 
     [Header("パーフェクトクリアしたときのパネルの取得")]
     public GameObject Perfectclear;
+
+    [Header("ポーズ画面パネルの取得")]
+    public GameObject Pause;
 
     [Header("ゲームオーバーサウンドの取得")]
     public AudioClip GO_Sound;
@@ -59,6 +62,10 @@ public class GameDirector : MonoBehaviour
     [System.NonSerialized]
     public bool SAPC;
 
+    //一時停止するbool　trueなら一時停止、falseなら一時停止ではない
+    [System.NonSerialized]
+    public bool freeze;
+
     //ゲームオーバー音を1回だけ鳴らすための旗 /*trueなら鳴った、falseなら鳴ってない*/
     [System.NonSerialized]
     public bool GOAudio;
@@ -75,6 +82,9 @@ public class GameDirector : MonoBehaviour
         //最初はクリア画面もゲームオーバー画面も非表示
         Gameclear.SetActive(false);
         Gameover.SetActive(false);
+        
+        //ポーズ画面の非表示
+        Pause.SetActive(false);
 
         /*bool作り過ぎなのは分かってます。でも、後々他の方法を覚えていくので許してください*/
         //最初に全部旗を下げることで初期化される
@@ -83,21 +93,22 @@ public class GameDirector : MonoBehaviour
         SAGO = false;
         SAGC = false;
         SAPC = false;
+        freeze = false;
         GOAudio = false;
         GCAudio = false;
         PCAudio = false;
 
         //プレイヤーの最大HPを取得
-        GD_PMHP = pc.GetComponent<PlayerController>().P_MaxHP;
+        GD_PMHP = GD_pc.GetComponent<PlayerController>().P_MaxHP;
     }
 
     void Update()
     {
         //プレイヤーの現在のHPを取得
-        GD_PNHP = pc.GetComponent<PlayerController>().P_NowHP;
+        GD_PNHP = GD_pc.GetComponent<PlayerController>().P_NowHP;
 
         //Timerの中の制限時間終了の旗を取得
-        GD_TE = Tm.GetComponent<Timer>().timeEnd;
+        GD_TE = GD_Tm.GetComponent<Timer>().timeEnd;
 
         /*プレイヤーの体力が無くなったらゲームオーバー画面を出す*/
         /*解決！:)*/
@@ -135,6 +146,24 @@ public class GameDirector : MonoBehaviour
             GameClear();
         }
         
+        //Pを押したら一時停止フラグを揚げる
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            freeze = true;
+        }
+
+        //一時停止しているならポーズ画面を表示する
+        if(freeze == true)
+        {
+            Pause.SetActive(true);
+        }
+
+        //ポーズ画面が出ていてスペースキーが押されたら
+        if(Pause == true && Input.GetKeyDown(KeyCode.Space))
+        {
+            Pause.SetActive(false);
+            freeze = false;
+        }
 
         //ゲームオーバー画面が出ているときEを押すとタイトルに戻る
         if(SAGO == true)
@@ -213,6 +242,4 @@ public class GameDirector : MonoBehaviour
         //プレイヤーの体力がゼロになって制限時間が残っているならゲームオーバー画面を出す
         Gameover.SetActive(true);
     }
-
-    
 }

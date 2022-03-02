@@ -45,11 +45,11 @@ public class AudioManager : MonoBehaviour
         //ゲームオーバーもゲームクリアも出ていない時BGMを流す
         if (AM_SAGO == false && AM_SAPC == false && AM_SAGC == false && AM_F == false)
         {
-            audioSource.volume = 0.2f;
+            audioSource.Pause();
         }
-        else //それ以外ならBGMの音量を0にする
+        else //それ以外ならBGMを一時停止する
         {
-            audioSource.volume = 0;
+            audioSource.UnPause();
         }
     }
 }
